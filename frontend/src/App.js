@@ -26,7 +26,7 @@ const todoItems = [
     description: "Write article on how to use django within react",
     completed: false
   }
-]
+];
 
 class App extends Component {
   constructor(props) {
@@ -57,7 +57,7 @@ class App extends Component {
   }
 
   createItem = () => {
-    const item = { title: "", description: "", complete: false };
+    const item = { title: "", description: "", completed: false };
     this.setState({ activeItem: item, modal: !this.state.modal });
   };
   editItem = item => {
@@ -77,14 +77,14 @@ class App extends Component {
       <div className="my-5 tab-list">
         <span
           onClick={() => this.displayCompleted(true)}
-          className={this.stateviewCompleted ? "" : "active"}
+          className={this.state.viewCompleted ? "active" : ""}
         >
           complete
         </span>
 
         <span
           onClick={() => this.displayCompleted(false)}
-          className={(this.state.viewCompleted ? "" : "active")}
+          className={this.state.viewCompleted ? "" : "active"}
         >
           Incomplete
         </span>
@@ -95,7 +95,7 @@ class App extends Component {
   renderItems = () => {
     const { viewCompleted} = this.state;
     const newItems = this.state.todoList.filter(
-      item => item.completed == viewCompleted
+      item => item.completed === viewCompleted
     );
 
     return newItems.map(item => (

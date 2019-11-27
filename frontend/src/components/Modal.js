@@ -6,12 +6,12 @@ import {
   ModalBody,
   ModalFooter,
   Form,
-  FormGroup
+  FormGroup,
   Input,
   Label
 } from "reactstrap";
 
-export default CustomModal extends Component {
+export default class CustomModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -20,7 +20,7 @@ export default CustomModal extends Component {
   }
   handleChange = e => {
     let { name, value } = e.target;
-    if (e.target.type === "checkbox" {
+    if (e.target.type === "checkbox") {
       value = e.target.checked;
     }
     const activeItem = { ...this.state.activeItem, [name]: value};
@@ -42,8 +42,20 @@ export default CustomModal extends Component {
                 onChange={this.handleChange}
                 placeholder="Enter Bug Title"
               />
-              </FormGroup>
+            </FormGroup>
+
             <FormGroup>
+              <Label for="description"> Description </Label>
+              <Input
+                type="text"
+                name="description"
+                value={this.state.activeItem.description}
+                onChange={this.handleChange}
+                placeholder="Enter Bug Description"
+              />
+            </FormGroup>
+
+            <FormGroup check>
               <Label for="completed">
                 <Input
                   type="checkbox"
@@ -51,6 +63,7 @@ export default CustomModal extends Component {
                   checked={this.state.activeItem.completed}
                   onChange={this.handleChange}
                 />
+                Completed
               </Label>
             </FormGroup>
           </Form>
