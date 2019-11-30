@@ -56,14 +56,14 @@ export default class CustomModal extends Component {
             </FormGroup>
 
             <FormGroup check>
-              <Label for="completed">
+              <Label for="resolved">
                 <Input
                   type="checkbox"
-                  name="completed"
-                  checked={this.state.activeItem.completed}
+                  name="resolved"
+                  checked={this.state.activeItem.resolved}
                   onChange={this.handleChange}
                 />
-                Completed
+                Resolved
               </Label>
             </FormGroup>
           </Form>

@@ -7,11 +7,11 @@ class App extends Component {
     super(props);
 
     this.state = {
-      viewCompleted: false,
+      viewResolved: false,
       activeItem: {
         title: "",
         description: "",
-        completed: false
+        resolved: false
       },
       todoList: []
     };
@@ -28,37 +28,37 @@ class App extends Component {
       .catch(err => console.log(err));
   };
 
-  displayCompleted = status => {
+  displayResolved = status => {
     if (status) {
-      return this.setState({ viewCompleted: true });
+      return this.setState({ viewResolved: true });
     }
-    return this.setState({ viewCompleted: false });
+    return this.setState({ viewResolved: false });
   };
 
   renderTabList = () => {
     return (
       <div className="my-5 tab-list">
         <span
-          onClick={() => this.displayCompleted(true)}
-          className={this.state.viewCompleted ? "active" : ""}
+          onClick={() => this.displayResolved(true)}
+          className={this.state.viewResolved ? "active" : ""}
         >
-          complete
+          Resolved
         </span>
 
         <span
-          onClick={() => this.displayCompleted(false)}
-          className={this.state.viewCompleted ? "" : "active"}
+          onClick={() => this.displayResolved(false)}
+          className={this.state.viewResolved ? "" : "active"}
         >
-          Incomplete
+          Unresolved
         </span>
       </div>
     );
   };
 
   renderItems = () => {
-    const { viewCompleted } = this.state;
+    const { viewResolved } = this.state;
     const newItems = this.state.todoList.filter(
-      item => item.completed === viewCompleted
+      item => item.resolved === viewResolved
     );
 
     return newItems.map(item => (
@@ -68,7 +68,7 @@ class App extends Component {
       >
         <span
           className={`todo-title mr-2 ${
-            this.state.viewCompleted ? "completed-todo" : ""
+            this.state.viewResolved ? "resolved-todo" : ""
           }`}
           title={item.description}
         >
@@ -117,7 +117,7 @@ class App extends Component {
   };
 
   createItem = () => {
-    const item = { title: "", description: "", completed: false };
+    const item = { title: "", description: "", resolved: false };
     this.setState({ activeItem: item, modal: !this.state.modal });
   };
   editItem = item => {
